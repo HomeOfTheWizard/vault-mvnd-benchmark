@@ -13,5 +13,6 @@ cd docker || exit
 
 # stop vault and cAdvisor after tests
 docker compose -f vault/docker-compose-vault.yaml down -v
+docker compose -f vault/docker-compose-vault-agent.yaml down -v
 docker container stop cadvisor
 docker container rm cadvisor
