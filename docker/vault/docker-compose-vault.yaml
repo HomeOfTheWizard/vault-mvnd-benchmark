@@ -15,6 +15,7 @@ services:
       - vault-token-volume:/home/vault
       - vault-volume:/data
       - ./configure-vault.sh:/vault/configure-vault.sh
+      - ./dev-policy.hcl:/vault/dev-policy.hcl
     healthcheck:
       retries: 5
       test: ["CMD", "curl", "-f", "http://127.0.0.1:8200"]

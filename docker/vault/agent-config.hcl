@@ -22,10 +22,10 @@ auto_auth {
 template {
   destination = "/vault/secrets/application.yaml"
   contents = <<EOT
-  {{- with secret "kv/data/fruit-basket" }}
-PRODUCER_NAME: {{ Data.data.producer_name }}
-PRODUCER_PSW: {{ Data.data.producer_password }}
-PRODUCER_FRUIT: {{ Data.data.producer_fruit }}
+  {{- with secret "secret/data/fruit-basket" }}
+PRODUCER_NAME: {{ .Data.data.producer_name }}
+PRODUCER_PSW: {{ .Data.data.producer_password }}
+PRODUCER_FRUIT: {{ .Data.data.producer_fruit }}
   {{ end }}
   EOT
 }

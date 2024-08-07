@@ -5,7 +5,7 @@ services:
     ports:
       - "18100:8100"
     environment:
-      VAULT_ADDR: 'http://0.0.0.0:8200'
+      VAULT_ADDR: 'http://vault:8200'
     cap_add:
       - IPC_LOCK
     volumes:
