@@ -6,6 +6,14 @@ vault {
 }
 
 auto_auth {
+#   method {
+#     type = "approle"
+#     config = {
+#       role_id_file_path = "/vault/token/role_id"
+#       secret_id_file_path = "/vault/token/secret_id"
+#       remove_secret_id_file_after_reading = false
+#     }
+#   }
   method {
     type = "token_file"
     config = {
