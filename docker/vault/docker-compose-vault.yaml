@@ -1,0 +1,29 @@
+services:
+  vault:
+    image: hashicorp/vault:latest
+    container_name: vault
+    restart: on-failure
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_ADDR: 'http://0.0.0.0:8200'
+      VAULT_LOCAL_CONFIG: '{"ui": true}'
+      VAULT_DEV_ROOT_TOKEN_ID: '00000000-0000-0000-0000-000000000000'
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - vault-token-volume:/home/vault
+      - vault-volume:/data
+      - ./configure-vault.sh:/vault/configure-vault.sh
+    healthcheck:
+      retries: 5
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8200"]
+    command: server -dev
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge
+volumes:
+  vault-volume:
+  vault-token-volume:

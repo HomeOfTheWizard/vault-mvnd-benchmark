@@ -1,0 +1,23 @@
+services:
+  vault-agent:
+    image: hashicorp/vault:latest
+    container_name: vault-agent
+    ports:
+      - "18100:8100"
+    environment:
+      VAULT_ADDR: 'http://0.0.0.0:8200'
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./secrets:/vault/secrets
+      - vault_vault-token-volume:/vault/token
+      - ./agent-config.hcl:/vault/config/agent-config.hcl
+    command: agent -log-level debug -config=/vault/config/agent-config.hcl
+    networks:
+      - vault_my-network
+networks:
+  vault_my-network:
+    external: true
+volumes:
+  vault_vault-token-volume:
+    external: true
