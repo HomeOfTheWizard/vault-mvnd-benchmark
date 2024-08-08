@@ -28,7 +28,7 @@ auto_auth {
 }
 
 template {
-  destination = "/vault/secrets/application.yaml"
+  destination = "/vault/secrets/application-agent.yaml"
   contents = <<EOT
   {{- with secret "secret/data/fruit-basket" }}
 PRODUCER_NAME: {{ .Data.data.producer_name }}

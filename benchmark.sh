@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # start vault and cAdvisor before launching tests
 cd docker || exit
 ./launch-cadvisor.sh
@@ -8,11 +8,7 @@ cd docker || exit
 ./launch-agent.sh
 
 # launch mvnd vault plugin container
+./launch-mvnd.sh
 
-# save reports
-
-# stop vault and cAdvisor after tests
-docker compose -f vault/docker-compose-vault.yaml down -v
-docker compose -f vault/docker-compose-vault-agent.yaml down -v
-docker container stop cadvisor
-docker container rm cadvisor
+# get reports
+./get-reports.sh
