@@ -15,7 +15,7 @@ docker run -d \
   homeofthewizard/mvnd:1.0.0
 
 echo "first run of mvnd client"
-time docker exec -it mvnd mvnd clean install
+time docker exec mvnd mvnd clean install -D"vault.outputMethod=EnvFile"
 
 echo "second run of mvnd client"
-time docker exec -it mvnd mvnd clean install
+time docker exec mvnd mvnd clean install -D"vault.outputMethod=EnvFile"
