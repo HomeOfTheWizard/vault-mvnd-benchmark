@@ -42,7 +42,9 @@ The tests uses the following containers to simulate this use case in production.
 For simplicity of the tests we will not run any application to consume the fetched credentials (grayed in the diagram above).  
 We will base our tests on the start-stop time of the containers which ends only when the credentials are fetched and ready to be consumed by the app.
 
-
+:warning: It is currently not possible with mvnd to create a pre-warmed daemon for a maven project during "docker build". So we cannot have a container that can run our maven build super fast right from the start.  
+In order to work around that, the solution for the moment is to run a container and warm a daemon for our build, and run multiple containers that run the mvnd client which will call that daemon container when needed to trigger a maven build.
+See the discussion [here](https://github.com/apache/maven-mvnd/issues/496).
 
 # How to run ?
 You will need a Docker engine to run the tests.   
@@ -71,8 +73,8 @@ Agent container:
 * Uses of RAM.
 
 Vault maven plugin via mvnd:
-* deamon starts and warms up in ~2 seconds the first time.
-* mvn vault:pull runs in 0.02 seconds if the deamon is already running and warmed up.
-* deamon container uses of RAM.
+* daemon starts and warms up in ~2 seconds the first time.
+* mvn vault:pull runs in 0.02 seconds if the daemon is already running and warmed up.
+* daemon container uses of RAM.
 
 
