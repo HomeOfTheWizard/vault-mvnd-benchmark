@@ -1,0 +1,10 @@
+FROM homeofthewizard/mvnd:1.0.0
+
+RUN mkdir /project
+
+COPY ./project/pom.xml pom.xml
+
+HEALTHCHECK --start-period=5s --interval=2s --timeout=4s CMD stat .env || exit 1
+
+ENTRYPOINT mvnd clean install -D"vault.outputMethod=EnvFile" && trap : TERM INT; sleep infinity & wait
+

@@ -2,3 +2,5 @@
 .idea/*
 /docker/agent/secrets/application.yaml
 /docs/.$Untitled Diagram.drawio.bkp
+/docker/agent/secrets/application-agent.yaml
+/docker/mvnd/project/.env

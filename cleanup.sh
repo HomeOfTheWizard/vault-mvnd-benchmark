@@ -8,4 +8,4 @@ docker volume rm $(docker volume ls -q -f dangling=true)
 
 # cleanup files
 sudo rm docker/agent/secrets/application-agent.yaml
-sudo rm docker/mvnd/.env
+sudo rm docker/mvnd/project/.env
