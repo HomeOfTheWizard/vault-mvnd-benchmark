@@ -16,6 +16,7 @@ docker run -d \
   --name mvnd-vault \
   homeofthewizard/mvnd-vault:1.0.0
 
+echo "wait for the deamon container to warmup and be ready..."
 while [ "$(docker inspect -f {{.State.Health.Status}} mvnd-vault)" != "healthy" ]; do sleep 1; done
 
 echo "first run of mvnd client"

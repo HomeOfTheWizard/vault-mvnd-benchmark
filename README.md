@@ -70,11 +70,13 @@ Executed environment:
 
 Agent container:
 * Runs in ~1.2 seconds to fetch the secrets and shut down.
-* Uses of RAM.
+* Uses ~400MB of RAM.
+* Uses ~0.2 CPU
 
 Vault maven plugin via mvnd:
 * daemon starts and warms up in ~2 seconds the first time.
 * mvn vault:pull runs in 0.02 seconds if the daemon is already running and warmed up.
-* daemon container uses of RAM.
+* daemon container uses ~200MB of RAM.
+* daemon container uses ~0.2 CPU
 
 
